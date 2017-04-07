@@ -1,23 +1,22 @@
-
-const transform = time => time < 10 ? `0${time}` : time
-
-const getTime = d => `${transform(d.getHours())}${transform(d.getMinutes())}${transform(d.getSeconds())}`
-
-const updateClock = time =>
-  document.querySelector('.clock')
-    .textContent = `# ${time}`
-
-const setBackground = hex => 
-  document.querySelector('.clock-container')
-  .style.background = `#${hex}`
-
-const update = () => {
-  const d = new Date()
-  const time = getTime(d)
-  updateClock(time)
-  setBackground(time)
-}
-
-
-const run = () => setInterval(update, 1000)
-run()
+var clock = document.querySelector('.clock');
+var clockContainer = document.querySelector('.clock-container');
+var transform = function (time) { return time < 10 ? "0" + time : "" + time; };
+var getTime = function (d) {
+    return "" + transform(d.getHours()) + transform(d.getMinutes()) + transform(d.getSeconds());
+};
+var setBackground = function (element, hex) {
+    element.style.background = "#" + hex;
+};
+var updateClock = function (element, time) {
+    element.textContent = "#" + time;
+};
+var update = function () {
+    var d = new Date();
+    var time = getTime(d);
+    updateClock(clock, time);
+    setBackground(clockContainer, time);
+};
+var run = function () {
+    setInterval(update, 1000);
+};
+run();
